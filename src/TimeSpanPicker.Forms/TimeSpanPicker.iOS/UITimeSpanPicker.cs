@@ -19,12 +19,6 @@ namespace Rotorsoft.Forms.Platform.iOS
 				(int)SelectedRowInComponent(4));
 			set
 			{
-				if (value < TimeSpan.Zero ||
-					value > new TimeSpan(23, 59, 59))
-				{
-					throw new ArgumentOutOfRangeException("Time", value, "Time must be between 00:00:00 and 23:59:59");
-				}
-
 				Select(new nint(value.Hours), 0, false);
 				Select(new nint(value.Minutes), 2, false);
 				Select(new nint(value.Seconds), 4, false);
