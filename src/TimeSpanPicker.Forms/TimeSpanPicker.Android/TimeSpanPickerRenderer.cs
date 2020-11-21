@@ -36,7 +36,11 @@ namespace Rotorsoft.Forms.Platform.Android
                 SetNativeControl(textField);
             }
 
-            SetTimeSpan(e.NewElement.Time);
+            if (e.NewElement != null)
+            {
+                SetTime(e.NewElement.Time);
+            }
+
             UpdateTextColor();
             UpdateFont();
         }
@@ -52,7 +56,7 @@ namespace Rotorsoft.Forms.Platform.Android
 
             if (e.PropertyName == TimeSpanPicker.TimeProperty.PropertyName || e.PropertyName == TimeSpanPicker.FormatProperty.PropertyName)
             {
-                SetTimeSpan(Element.Time);
+                SetTime(Element.Time);
             }
             else if (e.PropertyName == TimeSpanPicker.TextColorProperty.PropertyName)
             {
@@ -89,9 +93,9 @@ namespace Rotorsoft.Forms.Platform.Android
             }
         }
 
-        protected virtual AlertDialog CreateTimeSpanPickerDialog(EventHandler<TimeSpan> callback, int hours, int minutes, int seconds)
+        protected virtual AlertDialog CreateTimeSpanPickerDialog(EventHandler<TimeSpan> callback, TimeSpan time, TimeSpan minTime, TimeSpan maxTime)
         {
-            return new TimeSpanPickerDialog(Context, callback, hours, minutes, seconds);
+            return new TimeSpanPickerDialog(Context, callback, time, minTime, maxTime);
         }
 
         protected override EditText CreateNativeControl()
@@ -127,7 +131,7 @@ namespace Rotorsoft.Forms.Platform.Android
             TimeSpanPicker view = Element;
             ElementController.SetValueFromRenderer(VisualElement.IsFocusedPropertyKey, true);
 
-            _dialog = CreateTimeSpanPickerDialog(OnTimeSpanPicked, view.Time.Hours, view.Time.Minutes, view.Time.Seconds);
+            _dialog = CreateTimeSpanPickerDialog(OnTimeSpanPicked, view.Time, view.MinTime, view.MaxTime);
             _dialog.Show();
         }
 
@@ -136,7 +140,7 @@ namespace Rotorsoft.Forms.Platform.Android
             Element.Unfocus();
         }
 
-        private void SetTimeSpan(TimeSpan time)
+        private void SetTime(TimeSpan time)
         {
             Control.Text = DateTime.Today.Add(time).ToString(Element.Format);
         }
@@ -161,7 +165,7 @@ namespace Rotorsoft.Forms.Platform.Android
             ElementController.SetValueFromRenderer(TimeSpanPicker.TimeProperty, args);
             ElementController.SetValueFromRenderer(VisualElement.IsFocusedPropertyKey, false);
 
-            SetTimeSpan(args);
+            SetTime(args);
 
             _dialog?.Dispose();
             _dialog = null;

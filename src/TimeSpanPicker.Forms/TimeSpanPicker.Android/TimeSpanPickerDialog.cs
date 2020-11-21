@@ -13,7 +13,7 @@ namespace Rotorsoft.Forms.Platform.Android
 		private readonly NumberPicker _minutePicker;
 		private readonly NumberPicker _secondPicker;
 
-		public TimeSpanPickerDialog(Context context, EventHandler<TimeSpan> callback, int hours, int minutes, int seconds) : base(context)
+		public TimeSpanPickerDialog(Context context, EventHandler<TimeSpan> callback, TimeSpan time, TimeSpan minTime, TimeSpan maxTime) : base(context)
 		{
 			_callback = callback;
 
@@ -32,29 +32,29 @@ namespace Rotorsoft.Forms.Platform.Android
 
 			_hourPicker = new NumberPicker(Context)
 			{
-				MinValue = 0,
-				MaxValue = 23,
+				MinValue = minTime.Hours,
+				MaxValue = maxTime.Hours,
 				WrapSelectorWheel = false,
 			};
-			_hourPicker.Value = hours;
+			_hourPicker.Value = time.Hours;
 			_hourPicker.SetFormatter(numberFormatter);
 
 			_minutePicker = new NumberPicker(Context)
 			{
-				MinValue = 0,
-				MaxValue = 59,
+				MinValue = minTime.Minutes,
+				MaxValue = maxTime.Minutes,
 				WrapSelectorWheel = false,
 			};
-			_minutePicker.Value = minutes;
+			_minutePicker.Value = time.Minutes;
 			_minutePicker.SetFormatter(numberFormatter);
 
 			_secondPicker = new NumberPicker(Context)
 			{
-				MinValue = 0,
-				MaxValue = 59,
+				MinValue = minTime.Seconds,
+				MaxValue = maxTime.Seconds,
 				WrapSelectorWheel = false,
 			};
-			_secondPicker.Value = seconds;
+			_secondPicker.Value = time.Seconds;
 			_secondPicker.SetFormatter(numberFormatter);
 
 			dialogContent.AddView(_hourPicker);
