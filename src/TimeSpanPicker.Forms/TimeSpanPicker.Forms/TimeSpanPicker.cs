@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace Rotorsoft.Forms
 {
-    public class TimeSpanPicker : TimePicker
+	public class TimeSpanPicker : TimePicker
 	{
 		private static readonly TimeSpan MAX_VALUE = new TimeSpan(0, 23, 59, 59, 999);
 
@@ -20,24 +20,7 @@ namespace Rotorsoft.Forms
 				return time >= TimeSpan.Zero &&
 					time <= MAX_VALUE;
 			},
-			coerceValue: (bindable, value) =>
-			{
-				var time = (TimeSpan)value;
-				var minTime = (TimeSpan)bindable.GetValue(MinTimeProperty);
-				var maxTime = (TimeSpan)bindable.GetValue(MaxTimeProperty);
-
-				if (time < minTime)
-                {
-					time = minTime;
-				}
-				else if (time > maxTime)
-                {
-					time = maxTime;
-				}
-
-				return TimeSpan.Zero;
-				// return time;
-			});
+			coerceValue: CoerceTime);
 
 		public static readonly BindableProperty MinTimeProperty = BindableProperty.Create(
 			nameof(MinTime),
@@ -46,7 +29,7 @@ namespace Rotorsoft.Forms
 			TimeSpan.Zero,
 			BindingMode.TwoWay,
 			validateValue: (bindable, value) =>
-            {
+			{
 				var minTime = (TimeSpan)value;
 				var maxTime = (TimeSpan)bindable.GetValue(MaxTimeProperty);
 
@@ -74,26 +57,47 @@ namespace Rotorsoft.Forms
 			propertyChanged: ForceCoerceTime);
 
 		public new TimeSpan Time
-        {
+		{
 			get => (TimeSpan)GetValue(TimeProperty);
 			set => SetValue(TimeProperty, value);
-        }
+		}
 
 		public TimeSpan MinTime
-        {
+		{
 			get => (TimeSpan)GetValue(MinTimeProperty);
 			set => SetValue(MinTimeProperty, value);
-        }
+		}
 
 		public TimeSpan MaxTime
-        {
+		{
 			get => (TimeSpan)GetValue(MaxTimeProperty);
 			set => SetValue(MaxTimeProperty, value);
-        }
+		}
+
+		static object CoerceTime(BindableObject bindable, object value)
+		{
+			var time = (TimeSpan)value;
+			var minTime = (TimeSpan)bindable.GetValue(MinTimeProperty);
+			var maxTime = (TimeSpan)bindable.GetValue(MaxTimeProperty);
+
+			if (time < minTime)
+			{
+				time = minTime;
+			}
+			else if (time > maxTime)
+			{
+				time = maxTime;
+			}
+
+			return time;
+		}
 
 		static void ForceCoerceTime(BindableObject bindable, object oldValue, object newValue)
-        {
-			bindable.CoerceValue(TimeProperty);
-        }
+		{
+			// Workaround for BindableProperty.CoerceValue not working when explicitly called
+			var timeSpanPicker = (TimeSpanPicker)bindable;
+			var coercedTime = (TimeSpan)CoerceTime(timeSpanPicker, timeSpanPicker.Time);
+			timeSpanPicker.Time = coercedTime;
+		}
 	}
 }
