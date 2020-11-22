@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:Rotorsoft.Forms;assembly=TimeSpanPicker.Forms" xmlns:sampleapp="clr-namespace:SampleApp"
+             x:Class="SampleApp.MainPage"
+             x:DataType="sampleapp:MainPageViewModel">
+
+    <ContentPage.BindingContext>
+        <sampleapp:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="20">
+        <Label
+            Text="TimeSpan Calculator"
+            FontSize="Title"
+            FontAttributes="Bold"
+            Margin="0,0,0,10"/>
+
+        <Label Text="First value" FontSize="Body" />
+        <forms:TimeSpanPicker
+            MinTime="00:00:00"
+            MaxTime="23:59:59"
+            Time="{Binding StartingTimeSpan, Mode=TwoWay}"
+            Margin="0,0,0,10"/>
+
+        <Label Text="Second value" FontSize="Body" />
+        <forms:TimeSpanPicker
+            MinTime="00:00:00"
+            MaxTime="{Binding MaxValueToAdd, Mode=OneWay}"
+            Time="{Binding ValueToAdd, Mode=TwoWay}"
+            Margin="0,0,0,10" />
+
+        <Label Text="Operation" FontSize="Body" />
+        <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding IsAddSelected, Mode=TwoWay}" />
+            <Label FontSize="Body" Text="Add" VerticalOptions="Center" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="0,0,0,10" >
+            <CheckBox IsChecked="{Binding IsSubtractSelected, Mode=TwoWay}" />
+            <Label FontSize="Body" Text="Substract" VerticalOptions="Center" />
+        </StackLayout>
+
+        <Label FontSize="Body" Text="Result" />
+        <Label>
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span FontSize="Large" Text="{Binding Result, Mode=OneWay, StringFormat='{0:hh}'}" />
+                    <Span FontSize="Body" Text=" hours " />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        <Label>
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span FontSize="Large" Text="{Binding Result, Mode=OneWay, StringFormat='{0:mm}'}" />
+                    <Span FontSize="Body" Text=" minutes " />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+        <Label>
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span FontSize="Large" Text="{Binding Result, Mode=OneWay, StringFormat='{0:ss}'}" />
+                    <Span FontSize="Body" Text=" seconds" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+    </StackLayout>
+
+</ContentPage>

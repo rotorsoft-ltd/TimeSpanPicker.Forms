@@ -16,6 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\TimeSpanPicker.Forms\TimeSpanPicker.Forms\TimeSpanPicker.Forms.csproj" />
+    <ProjectReference Include="..\..\TimeSpanPicker.Forms\TimeSpanPicker.Forms\TimeSpanPicker.Forms.csproj" />
   </ItemGroup>
 </Project>

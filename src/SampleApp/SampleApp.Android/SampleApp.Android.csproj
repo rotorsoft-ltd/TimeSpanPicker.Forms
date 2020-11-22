@@ -89,11 +89,11 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\TimeSpanPicker.Forms\TimeSpanPicker.Android\TimeSpanPicker.Android.csproj">
+    <ProjectReference Include="..\..\TimeSpanPicker.Forms\TimeSpanPicker.Android\TimeSpanPicker.Android.csproj">
       <Project>{bb2e4431-b1c9-4ec1-a610-9ed63ae4caeb}</Project>
       <Name>TimeSpanPicker.Android</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\TimeSpanPicker.Forms\TimeSpanPicker.Forms\TimeSpanPicker.Forms.csproj">
+    <ProjectReference Include="..\..\TimeSpanPicker.Forms\TimeSpanPicker.Forms\TimeSpanPicker.Forms.csproj">
       <Project>{79a547b6-d700-4f21-b34a-1775ac0c1aa6}</Project>
       <Name>TimeSpanPicker.Forms</Name>
     </ProjectReference>
