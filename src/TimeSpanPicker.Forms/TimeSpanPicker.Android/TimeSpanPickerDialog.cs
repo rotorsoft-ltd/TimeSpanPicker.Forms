@@ -9,13 +9,19 @@ namespace Rotorsoft.Forms.Platform.Android
 	{
 		private readonly EventHandler<TimeSpan> _callback;
 
-		private readonly NumberPicker _hourPicker;
-		private readonly NumberPicker _minutePicker;
-		private readonly NumberPicker _secondPicker;
+		private readonly NumberPicker _hoursPicker;
+		private readonly NumberPicker _minutesPicker;
+		private readonly NumberPicker _secondsPicker;
+
+		private readonly TimeSpan _minTime;
+		private readonly TimeSpan _maxTime;
 
 		public TimeSpanPickerDialog(Context context, EventHandler<TimeSpan> callback, TimeSpan time, TimeSpan minTime, TimeSpan maxTime) : base(context)
 		{
 			_callback = callback;
+
+			_minTime = minTime;
+			_maxTime = maxTime;
 
 			SetCancelable(true);
 			SetCanceledOnTouchOutside(true);
@@ -30,51 +36,85 @@ namespace Rotorsoft.Forms.Platform.Android
 
 			var numberFormatter = new NumberPickerFormatter();
 
-			_hourPicker = new NumberPicker(Context)
+			_hoursPicker = new NumberPicker(Context)
 			{
-				MinValue = minTime.Hours,
-				MaxValue = maxTime.Hours,
+				MinValue = 0,
+				MaxValue = 23,
 				WrapSelectorWheel = false,
 			};
-			_hourPicker.Value = time.Hours;
-			_hourPicker.SetFormatter(numberFormatter);
+			_hoursPicker.Value = time.Hours;
+            _hoursPicker.ValueChanged += HourPicker_ValueChanged;
+			_hoursPicker.SetFormatter(numberFormatter);
 
-			_minutePicker = new NumberPicker(Context)
+			_minutesPicker = new NumberPicker(Context)
 			{
-				MinValue = minTime.Minutes,
-				MaxValue = maxTime.Minutes,
+				MinValue = 0,
+				MaxValue = 59,
 				WrapSelectorWheel = false,
 			};
-			_minutePicker.Value = time.Minutes;
-			_minutePicker.SetFormatter(numberFormatter);
+			_minutesPicker.Value = time.Minutes;
+            _minutesPicker.ValueChanged += MinutePicker_ValueChanged;
+			_minutesPicker.SetFormatter(numberFormatter);
 
-			_secondPicker = new NumberPicker(Context)
+			_secondsPicker = new NumberPicker(Context)
 			{
-				MinValue = minTime.Seconds,
-				MaxValue = maxTime.Seconds,
+				MinValue = 0,
+				MaxValue = 59,
 				WrapSelectorWheel = false,
 			};
-			_secondPicker.Value = time.Seconds;
-			_secondPicker.SetFormatter(numberFormatter);
+			_secondsPicker.Value = time.Seconds;
+			_secondsPicker.SetFormatter(numberFormatter);
 
-			dialogContent.AddView(_hourPicker);
+			dialogContent.AddView(_hoursPicker);
 			dialogContent.AddView(new TextView(Context)
 			{
 				Text = ":"
 			});
-			dialogContent.AddView(_minutePicker);
+			dialogContent.AddView(_minutesPicker);
 			dialogContent.AddView(new TextView(Context)
 			{
 				Text = ":"
 			});
-			dialogContent.AddView(_secondPicker);
+			dialogContent.AddView(_secondsPicker);
+
+			UpdateHoursPickerConstraints();
+			UpdateMinutesPickerConstraints();
+			UpdateSecondsPickerConstrains();
 
 			SetView(dialogContent);
 		}
 
-		protected override void Dispose(bool disposing)
+        protected override void Dispose(bool disposing)
 		{
 			base.Dispose(disposing);
+		}
+
+		private void HourPicker_ValueChanged(object sender, NumberPicker.ValueChangeEventArgs e)
+		{
+			UpdateMinutesPickerConstraints();
+		}
+
+		private void MinutePicker_ValueChanged(object sender, NumberPicker.ValueChangeEventArgs e)
+		{
+			UpdateSecondsPickerConstrains();
+		}
+
+		private void UpdateHoursPickerConstraints()
+        {
+			_hoursPicker.MinValue = _minTime.Hours;
+			_hoursPicker.MaxValue = _maxTime.Hours;
+        }
+
+		private void UpdateMinutesPickerConstraints()
+        {
+			_minutesPicker.MinValue = (_hoursPicker.Value == _minTime.Hours) ? _minTime.Minutes : 0;
+			_minutesPicker.MaxValue = (_hoursPicker.Value == _maxTime.Hours) ? _maxTime.Minutes : 59;
+		}
+
+		private void UpdateSecondsPickerConstrains()
+        {
+			_secondsPicker.MinValue = (_minutesPicker.Value == _minTime.Minutes) ? _minTime.Seconds : 0;
+			_secondsPicker.MaxValue = (_minutesPicker.Value == _maxTime.Minutes) ? _maxTime.Seconds : 59;
 		}
 
 		private void OnCancelClicked(object sender, DialogClickEventArgs args)
@@ -83,7 +123,7 @@ namespace Rotorsoft.Forms.Platform.Android
 
 		private void OnOkClicked(object sender, DialogClickEventArgs args)
 		{
-			_callback?.Invoke(this, new TimeSpan(_hourPicker.Value, _minutePicker.Value, _secondPicker.Value));
+			_callback?.Invoke(this, new TimeSpan(_hoursPicker.Value, _minutesPicker.Value, _secondsPicker.Value));
 		}
 	}
 }

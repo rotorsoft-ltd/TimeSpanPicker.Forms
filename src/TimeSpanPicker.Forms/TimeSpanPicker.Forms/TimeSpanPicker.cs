@@ -56,6 +56,8 @@ namespace Rotorsoft.Forms
 			},
 			propertyChanged: ForceCoerceTime);
 
+		public new static readonly BindableProperty FormatProperty = BindableProperty.Create(nameof(Format), typeof(string), typeof(TimeSpanPicker), "T");
+
 		public new TimeSpan Time
 		{
 			get => (TimeSpan)GetValue(TimeProperty);
@@ -72,6 +74,12 @@ namespace Rotorsoft.Forms
 		{
 			get => (TimeSpan)GetValue(MaxTimeProperty);
 			set => SetValue(MaxTimeProperty, value);
+		}
+
+		public new string Format
+		{
+			get { return (string)GetValue(FormatProperty); }
+			set { SetValue(FormatProperty, value); }
 		}
 
 		static object CoerceTime(BindableObject bindable, object value)

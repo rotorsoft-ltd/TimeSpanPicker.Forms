@@ -12,7 +12,7 @@ using Xamarin.Forms.Platform.Android;
 [assembly: ExportRenderer(typeof(TimeSpanPicker), typeof(TimeSpanPickerRenderer))]
 namespace Rotorsoft.Forms.Platform.Android
 {
-    public abstract class TimeSpanPickerRenderer : ViewRenderer<TimeSpanPicker, EditText>, IPickerRenderer
+    public class TimeSpanPickerRenderer : ViewRenderer<TimeSpanPicker, EditText>, IPickerRenderer
     {
         private AlertDialog _dialog;
         private bool _disposed;
@@ -142,7 +142,7 @@ namespace Rotorsoft.Forms.Platform.Android
 
         private void SetTime(TimeSpan time)
         {
-            Control.Text = DateTime.Today.Add(time).ToString(Element.Format);
+            Control.Text = time.ToString(Element.Format);
         }
 
         private void UpdateFont()
