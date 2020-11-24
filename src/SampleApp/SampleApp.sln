@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApp.Android", "Sample
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApp.iOS", "SampleApp.iOS\SampleApp.iOS.csproj", "{1CA1259F-8298-4D59-9C54-7CFD3DC9CE4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApp", "SampleApp\SampleApp.csproj", "{0FC95A01-9A8F-4A0F-B70D-EE4BC74303EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleApp", "SampleApp\SampleApp.csproj", "{0FC95A01-9A8F-4A0F-B70D-EE4BC74303EB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeSpanPicker.Forms", "..\TimeSpanPicker.Forms\TimeSpanPicker.Forms\TimeSpanPicker.Forms.csproj", "{79A547B6-D700-4F21-B34A-1775AC0C1AA6}"
 EndProject
@@ -32,8 +32,6 @@ Global
 		{2D38926E-0D8C-41F9-AA3E-8942CB0CC880}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{2D38926E-0D8C-41F9-AA3E-8942CB0CC880}.Debug|iPhone.Deploy.0 = Debug|Any CPU
 		{2D38926E-0D8C-41F9-AA3E-8942CB0CC880}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{2D38926E-0D8C-41F9-AA3E-8942CB0CC880}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{2D38926E-0D8C-41F9-AA3E-8942CB0CC880}.Debug|iPhoneSimulator.Deploy.0 = Debug|Any CPU
 		{2D38926E-0D8C-41F9-AA3E-8942CB0CC880}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D38926E-0D8C-41F9-AA3E-8942CB0CC880}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2D38926E-0D8C-41F9-AA3E-8942CB0CC880}.Release|Any CPU.Deploy.0 = Release|Any CPU
@@ -96,7 +94,6 @@ Global
 		{BB2E4431-B1C9-4EC1-A610-9ED63AE4CAEB}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{BB2E4431-B1C9-4EC1-A610-9ED63AE4CAEB}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{BB2E4431-B1C9-4EC1-A610-9ED63AE4CAEB}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{BB2E4431-B1C9-4EC1-A610-9ED63AE4CAEB}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
 		{BB2E4431-B1C9-4EC1-A610-9ED63AE4CAEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB2E4431-B1C9-4EC1-A610-9ED63AE4CAEB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BB2E4431-B1C9-4EC1-A610-9ED63AE4CAEB}.Release|iPhone.ActiveCfg = Release|Any CPU

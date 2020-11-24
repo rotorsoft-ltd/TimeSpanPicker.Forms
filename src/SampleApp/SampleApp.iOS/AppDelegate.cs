@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using Rotorsoft.Forms.Platform.iOS;
 using UIKit;
 
 namespace SampleApp.iOS
@@ -22,7 +23,7 @@ namespace SampleApp.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.SetFlags("RadioButton_Experimental");
+            TimeSpanPickerRenderer.Initialize();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
