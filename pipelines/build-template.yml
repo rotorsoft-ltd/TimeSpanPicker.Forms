@@ -20,14 +20,10 @@ steps:
     configuration: 'Release'
     msbuildArguments: '/t:Build'
     clean: true 
-- task: VSTest@2
+- task: DotNetCoreCLI@2
   inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\*UnitTests.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
+    command: 'test'
+    projects: '**/*UnitTests.csproj'
 - ${{ if eq(parameters.publishPackage, true) }}:
   - task: NuGetCommand@2
     displayName: 'Pack'
