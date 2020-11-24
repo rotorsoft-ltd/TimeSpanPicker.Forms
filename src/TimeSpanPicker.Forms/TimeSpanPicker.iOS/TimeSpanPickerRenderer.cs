@@ -12,7 +12,7 @@ namespace Rotorsoft.Forms.Platform.iOS
 {
     public class TimeSpanPickerRenderer : ViewRenderer<TimeSpanPicker, UITextField>
 	{
-		private UITimeSpanPicker _picker;
+		private UITimeSpanPickerView _picker;
 		private UIColor _defaultTextColor;
 		private bool _disposed;
 
@@ -20,6 +20,10 @@ namespace Rotorsoft.Forms.Platform.iOS
 		public TimeSpanPickerRenderer()
 		{
 		}
+
+		public static void Initialize()
+        {
+        }
 
 		IElementController ElementController => Element as IElementController;
 
@@ -37,7 +41,6 @@ namespace Rotorsoft.Forms.Platform.iOS
 				if (_picker != null)
 				{
 					_picker.RemoveFromSuperview();
-					_picker.TimeSpanChanged -= OnTimeSpanChanged;
 					_picker.Dispose();
 					_picker = null;
 				}
@@ -69,15 +72,17 @@ namespace Rotorsoft.Forms.Platform.iOS
 					entry.EditingDidBegin += OnStarted;
 					entry.EditingDidEnd += OnEnded;
 
-					_picker = new UITimeSpanPicker();
+					_picker = new UITimeSpanPickerView();
 					_picker.Time = e.NewElement.Time;
+					_picker.MinTime = e.NewElement.MinTime;
+					_picker.MaxTime = e.NewElement.MaxTime;
 
 					var width = UIScreen.MainScreen.Bounds.Width;
 					var toolbar = new UIToolbar(new CGRect(0, 0, width, 44)) { BarStyle = UIBarStyle.Default, Translucent = true };
 					var spacer = new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace);
 					var doneButton = new UIBarButtonItem(UIBarButtonSystemItem.Done, (o, a) =>
 					{
-						UpdateElementTimeSpan();
+						UpdateElementTime();
 						entry.ResignFirstResponder();
 					});
 
@@ -94,15 +99,14 @@ namespace Rotorsoft.Forms.Platform.iOS
 
 					_defaultTextColor = entry.TextColor;
 
-					_picker.TimeSpanChanged += OnTimeSpanChanged;
-
 					entry.AccessibilityTraits = UIAccessibilityTrait.Button;
 
 					SetNativeControl(entry);
 				}
 
 				UpdateFont();
-				UpdateTimeSpan();
+				UpdateTime();
+				UpdateTimeConstraints();
 				UpdateTextColor();
 			}
 
@@ -115,8 +119,12 @@ namespace Rotorsoft.Forms.Platform.iOS
 
 			if (e.PropertyName == TimeSpanPicker.TimeProperty.PropertyName || e.PropertyName == TimeSpanPicker.FormatProperty.PropertyName)
 			{
-				UpdateTimeSpan();
+				UpdateTime();
 			}
+			else if (e.PropertyName == TimeSpanPicker.MinTimeProperty.PropertyName || e.PropertyName == TimeSpanPicker.MaxTimeProperty.PropertyName)
+            {
+				UpdateTimeConstraints();
+            }
 			else if (e.PropertyName == TimeSpanPicker.TextColorProperty.PropertyName || e.PropertyName == VisualElement.IsEnabledProperty.PropertyName)
 			{
 				UpdateTextColor();
@@ -135,11 +143,6 @@ namespace Rotorsoft.Forms.Platform.iOS
 		private void OnStarted(object sender, EventArgs eventArgs)
 		{
 			ElementController.SetValueFromRenderer(VisualElement.IsFocusedPropertyKey, true);
-		}
-
-		private void OnTimeSpanChanged(object sender, TimeSpan time)
-		{
-			UpdateElementTimeSpan();
 		}
 
 		protected internal virtual void UpdateFont()
@@ -166,13 +169,19 @@ namespace Rotorsoft.Forms.Platform.iOS
 			Control.Text = Control.Text;
 		}
 
-		private void UpdateTimeSpan()
+		private void UpdateTime()
 		{
 			_picker.Time = Element.Time;
 			Control.Text = Element.Time.ToString(Element.Format);
 		}
 
-		private void UpdateElementTimeSpan()
+		private void UpdateTimeConstraints()
+        {
+			_picker.MinTime = Element.MinTime;
+			_picker.MaxTime = Element.MaxTime;
+		}
+
+		private void UpdateElementTime()
 		{
 			ElementController.SetValueFromRenderer(TimeSpanPicker.TimeProperty, _picker.Time);
 		}

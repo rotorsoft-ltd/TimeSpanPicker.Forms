@@ -40,9 +40,10 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NumberPickerViewModel.cs" />
     <Compile Include="TimeSpanPickerRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UITimeSpanPicker.cs" />
+    <Compile Include="UITimeSpanPickerView.cs" />
     <Compile Include="UITimeSpanPickerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

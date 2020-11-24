@@ -35,7 +35,7 @@ namespace Rotorsoft.Forms
 
 				return minTime >= TimeSpan.Zero &&
 					minTime <= MAX_VALUE &&
-					minTime < maxTime;
+					minTime <= maxTime;
 			},
 			propertyChanged: ForceCoerceTime);
 
@@ -52,7 +52,7 @@ namespace Rotorsoft.Forms
 
 				return maxTime >= TimeSpan.Zero &&
 					maxTime <= MAX_VALUE &&
-					maxTime > minTime;
+					maxTime >= minTime;
 			},
 			propertyChanged: ForceCoerceTime);
 

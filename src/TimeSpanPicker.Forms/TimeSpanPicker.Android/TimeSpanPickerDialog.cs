@@ -79,7 +79,7 @@ namespace Rotorsoft.Forms.Platform.Android
 
 			UpdateHoursPickerConstraints();
 			UpdateMinutesPickerConstraints();
-			UpdateSecondsPickerConstrains();
+			UpdateSecondsPickerConstraints();
 
 			SetView(dialogContent);
 		}
@@ -92,11 +92,12 @@ namespace Rotorsoft.Forms.Platform.Android
 		private void HourPicker_ValueChanged(object sender, NumberPicker.ValueChangeEventArgs e)
 		{
 			UpdateMinutesPickerConstraints();
+			UpdateSecondsPickerConstraints();
 		}
 
 		private void MinutePicker_ValueChanged(object sender, NumberPicker.ValueChangeEventArgs e)
 		{
-			UpdateSecondsPickerConstrains();
+			UpdateSecondsPickerConstraints();
 		}
 
 		private void UpdateHoursPickerConstraints()
@@ -111,10 +112,10 @@ namespace Rotorsoft.Forms.Platform.Android
 			_minutesPicker.MaxValue = (_hoursPicker.Value == _maxTime.Hours) ? _maxTime.Minutes : 59;
 		}
 
-		private void UpdateSecondsPickerConstrains()
+		private void UpdateSecondsPickerConstraints()
         {
-			_secondsPicker.MinValue = (_minutesPicker.Value == _minTime.Minutes) ? _minTime.Seconds : 0;
-			_secondsPicker.MaxValue = (_minutesPicker.Value == _maxTime.Minutes) ? _maxTime.Seconds : 59;
+			_secondsPicker.MinValue = ((_hoursPicker.Value == _minTime.Hours) && (_minutesPicker.Value == _minTime.Minutes)) ? _minTime.Seconds : 0;
+			_secondsPicker.MaxValue = ((_hoursPicker.Value == _maxTime.Hours) && (_minutesPicker.Value == _maxTime.Minutes)) ? _maxTime.Seconds : 59;
 		}
 
 		private void OnCancelClicked(object sender, DialogClickEventArgs args)

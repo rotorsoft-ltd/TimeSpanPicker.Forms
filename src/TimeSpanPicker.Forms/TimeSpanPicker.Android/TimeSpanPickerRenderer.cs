@@ -38,7 +38,7 @@ namespace Rotorsoft.Forms.Platform.Android
 
             if (e.NewElement != null)
             {
-                SetTime(e.NewElement.Time);
+                UpdateTime(e.NewElement.Time);
             }
 
             UpdateTextColor();
@@ -56,7 +56,7 @@ namespace Rotorsoft.Forms.Platform.Android
 
             if (e.PropertyName == TimeSpanPicker.TimeProperty.PropertyName || e.PropertyName == TimeSpanPicker.FormatProperty.PropertyName)
             {
-                SetTime(Element.Time);
+                UpdateTime(Element.Time);
             }
             else if (e.PropertyName == TimeSpanPicker.TextColorProperty.PropertyName)
             {
@@ -140,7 +140,7 @@ namespace Rotorsoft.Forms.Platform.Android
             Element.Unfocus();
         }
 
-        private void SetTime(TimeSpan time)
+        private void UpdateTime(TimeSpan time)
         {
             Control.Text = time.ToString(Element.Format);
         }
@@ -165,7 +165,7 @@ namespace Rotorsoft.Forms.Platform.Android
             ElementController.SetValueFromRenderer(TimeSpanPicker.TimeProperty, args);
             ElementController.SetValueFromRenderer(VisualElement.IsFocusedPropertyKey, false);
 
-            SetTime(args);
+            UpdateTime(args);
 
             _dialog?.Dispose();
             _dialog = null;
