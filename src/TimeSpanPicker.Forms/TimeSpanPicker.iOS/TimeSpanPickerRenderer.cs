@@ -21,6 +21,10 @@ namespace Rotorsoft.Forms.Platform.iOS
 		{
 		}
 
+		/// <summary>
+		/// Initializes the <see cref="TimeSpanPickerRenderer"/> so it can be used by the <see cref="TimeSpanPicker"/> control.
+		/// </summary>
+		/// <remarks>Must be called before <see cref="Xamarin.Forms.Forms.Init"/>.</remarks>
 		public static void Initialize()
         {
         }
