@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>TimeSpanPicker.Forms</id>
+    <version>$version$</version>
+    <authors>Rotorsoft Ltd.</authors>
+    <owners></owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+	<license type="file">LICENSE</license>
+	<projectUrl>https://github.com/rotorsoft-ltd/TimeSpanPicker.Forms</projectUrl>
+    <description>A Xamarin Forms control for selecting TimeSpan values.</description>
+    <tags>xamarin, timespanpicker, xamarin.forms, controls</tags>
+    <repository type="git" url="https://github.com/rotorsoft-ltd/TimeSpanPicker.Forms.git" />
+    <dependencies>
+	  <group targetFramework="netstandard2.0">
+        <dependency id="Xamarin.Forms" version="4.5.0.725" />
+	  </group>
+	  <group targetFramework="MonoAndroid10.0">
+        <dependency id="Xamarin.Forms" version="4.5.0.725" />
+	  </group>
+	  <group targetFramework="Xamarin.iOS10">
+        <dependency id="Xamarin.Forms" version="4.5.0.725" />
+	  </group>
+	</dependencies>
+  </metadata>
+  <files>
+    <file src="..\LICENSE"/>
+	
+    <file src="..\src\TimeSpanPicker.Forms\TimeSpanPicker.Forms\bin\$Configuration$\netstandard2.0\TimeSpanPicker.Forms.dll" target="lib\netstandard2.0" />
+	<file src="..\src\TimeSpanPicker.Forms\TimeSpanPicker.Forms\bin\$Configuration$\netstandard2.0\TimeSpanPicker.Forms.*pdb" target="lib\netstandard2.0" />
+	<file src="..\src\TimeSpanPicker.Forms\TimeSpanPicker.Forms\bin\$Configuration$\netstandard2.0\TimeSpanPicker.Forms.*mdb" target="lib\netstandard2.0" />
+    <file src="..\src\TimeSpanPicker.Forms\TimeSpanPicker.Forms\bin\$Configuration$\netstandard2.0\TimeSpanPicker.Forms.xml" target="lib\netstandard2.0" />
+	
+    <file src="..\src\TimeSpanPicker.Forms\TimeSpanPicker.Android\bin\$Configuration$\TimeSpanPicker.Android.dll" target="lib\MonoAndroid10.0" />
+    <file src="..\src\TimeSpanPicker.Forms\TimeSpanPicker.Android\bin\$Configuration$\TimeSpanPicker.Android.*pdb" target="lib\MonoAndroid10.0" />
+    <file src="..\src\TimeSpanPicker.Forms\TimeSpanPicker.Android\bin\$Configuration$\TimeSpanPicker.Android.*mdb" target="lib\MonoAndroid10.0" />
+    <file src="..\src\TimeSpanPicker.Forms\TimeSpanPicker.Forms\bin\$Configuration$\netstandard2.0\TimeSpanPicker.Forms.dll" target="lib\MonoAndroid10.0" />
+	<file src="..\src\TimeSpanPicker.Forms\TimeSpanPicker.Forms\bin\$Configuration$\netstandard2.0\TimeSpanPicker.Forms.*pdb" target="lib\MonoAndroid10.0" />
+	<file src="..\src\TimeSpanPicker.Forms\TimeSpanPicker.Forms\bin\$Configuration$\netstandard2.0\TimeSpanPicker.Forms.*mdb" target="lib\MonoAndroid10.0" />
+	<file src="..\src\TimeSpanPicker.Forms\TimeSpanPicker.Forms\bin\$Configuration$\netstandard2.0\TimeSpanPicker.Forms.xml" target="lib\MonoAndroid10.0" />
+
+    <file src="..\src\TimeSpanPicker.Forms\TimeSpanPicker.iOS\bin\$Configuration$\TimeSpanPicker.iOS.dll" target="lib\Xamarin.iOS10" />
+    <file src="..\src\TimeSpanPicker.Forms\TimeSpanPicker.iOS\bin\$Configuration$\TimeSpanPicker.iOS.*pdb" target="lib\Xamarin.iOS10" />
+    <file src="..\src\TimeSpanPicker.Forms\TimeSpanPicker.iOS\bin\$Configuration$\TimeSpanPicker.iOS.*mdb" target="lib\Xamarin.iOS10" />
+    <file src="..\src\TimeSpanPicker.Forms\TimeSpanPicker.Forms\bin\$Configuration$\netstandard2.0\TimeSpanPicker.Forms.dll" target="lib\Xamarin.iOS10" />
+	<file src="..\src\TimeSpanPicker.Forms\TimeSpanPicker.Forms\bin\$Configuration$\netstandard2.0\TimeSpanPicker.Forms.*pdb" target="lib\Xamarin.iOS10" />
+	<file src="..\src\TimeSpanPicker.Forms\TimeSpanPicker.Forms\bin\$Configuration$\netstandard2.0\TimeSpanPicker.Forms.*mdb" target="lib\Xamarin.iOS10" />
+	<file src="..\src\TimeSpanPicker.Forms\TimeSpanPicker.Forms\bin\$Configuration$\netstandard2.0\TimeSpanPicker.Forms.xml" target="lib\Xamarin.iOS10" />
+  </files>
+</package>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:forms="clr-namespace:Rotorsoft.Forms;assembly=TimeSpanPicker.Forms" xmlns:sampleapp="clr-namespace:SampleApp"
+             x:Class="SampleApp.MainPage"
+             x:DataType="sampleapp:MainPageViewModel">
+
+    <ContentPage.BindingContext>
+        <sampleapp:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="20,0,20,20" Margin="0,40,0,0">
+        <Label Text="Constraint value" FontSize="Body" />
+        <forms:TimeSpanPicker
+            MinTime="00:00:00"
+            MaxTime="23:59:59"
+            Time="{Binding ConstraintValue, Mode=TwoWay}"
+            Margin="0,0,0,10"/>
+
+        <Label Text="TimeSpanPicker with MinTime constraint" FontSize="Body" />
+        <forms:TimeSpanPicker
+            MinTime="{Binding ConstraintValue, Mode=OneWay}"
+            MaxTime="23:59:59"
+            Margin="0,0,0,10" />
+
+        <Label Text="TimeSpanPicker with MaxTime constraint" FontSize="Body" />
+        <forms:TimeSpanPicker
+            MinTime="00:00:00"
+            MaxTime="{Binding ConstraintValue, Mode=OneWay}"
+            Margin="0,0,0,10" />
+
+        <Label Text="TimeSpanPicker with both constraints (00:00:10 - 00:00:50)" FontSize="Body" />
+        <forms:TimeSpanPicker
+            MinTime="00:00:10"
+            MaxTime="00:00:50"
+            Margin="0,0,0,10" />
+
+        <Label Text="TimeSpanPicker with both constraints (00:10:10 - 00:50:50)" FontSize="Body" />
+        <forms:TimeSpanPicker
+            MinTime="00:10:10"
+            MaxTime="00:50:50"
+            Margin="0,0,0,10" />
+
+    </StackLayout>
+
+</ContentPage>
