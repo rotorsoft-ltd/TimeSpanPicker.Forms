@@ -1,7 +1,7 @@
 Version        | Build status     | NuGet package
 ---------------|------------------|----------------|
-Prerelease     | ![Build Status](https://dev.azure.com/rotorsoft/TimeSpanPicker.Forms/_apis/build/status/TimeSpanPicker.Forms%20staging?branchName=staging) | [![NuGet](https://img.shields.io/nuget/vpre/TimeSpanPicker.Forms.svg?style=flat-square&label=nuget)](https://www.nuget.org/packages/TimeSpanPicker.Forms)
-Stable         | ![Build Status](https://dev.azure.com/rotorsoft/TimeSpanPicker.Forms/_apis/build/status/TimeSpanPicker.Forms%20staging?branchName=main) | [![NuGet](https://img.shields.io/nuget/v/TimeSpanPicker.Forms.svg?style=flat-square&label=nuget)](https://www.nuget.org/packages/TimeSpanPicker.Forms)
+Prerelease     | ![Build Status](https://dev.azure.com/rotorsoft/TimeSpanPicker.Forms/_apis/build/status/TimeSpanPicker.Forms%20CI?branchName=staging) | [![NuGet](https://img.shields.io/nuget/vpre/TimeSpanPicker.Forms.svg?style=flat-square&label=nuget)](https://www.nuget.org/packages/TimeSpanPicker.Forms)
+Stable         | ![Build Status](https://dev.azure.com/rotorsoft/TimeSpanPicker.Forms/_apis/build/status/TimeSpanPicker.Forms%20CI?branchName=main) | [![NuGet](https://img.shields.io/nuget/v/TimeSpanPicker.Forms.svg?style=flat-square&label=nuget)](https://www.nuget.org/packages/TimeSpanPicker.Forms)
 
 # TimeSpanPicker.Forms
 A Xamarin Forms control for selecting TimeSpan values.
