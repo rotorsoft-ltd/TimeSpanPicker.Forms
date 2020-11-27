@@ -29,7 +29,7 @@ steps:
     displayName: 'Pack'
     inputs:
       command: 'custom'
-      arguments: 'pack $(Build.SourcesDirectory)/src/TimeSpanPicker.Forms/TimeSpanPicker.Forms/TimeSpanPicker.Forms.csproj -version "${{ parameters.version }}" -Properties Configuration=Release -OutputDirectory $(Build.ArtifactStagingDirectory)'
+      arguments: 'pack $(Build.SourcesDirectory)/.nuspec/TimeSpanPicker.Forms.nuspec -version "${{ parameters.version }}" -Properties Configuration=Release -OutputDirectory $(Build.ArtifactStagingDirectory)'
   - task: PublishBuildArtifacts@1
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
